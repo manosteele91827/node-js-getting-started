@@ -1,5 +1,7 @@
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/'});
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -9,8 +11,8 @@ app.use(bodyParser.json());
 // views is directory for all template files
 var a = "";
 
-app.post('/', function(request, response) {
-  a = request.body;
+app.post('/',upload.single('picture'), function(request, response) {
+  a = request.body + "" + request.file;
   response.end();
 });
 
