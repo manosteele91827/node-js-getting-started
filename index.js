@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 var a = "";
 
 app.post('/', function(request, response) {
-  a = request.body.hello;
+  a = request.body;
   response.end();
 });
 
